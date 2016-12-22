@@ -14,7 +14,7 @@ ENV DOKUWIKI_CSUM 9b9ad79421a1bdad9c133e859140f3f2
 
 # Update & install packages & cleanup afterwards
 #RUN adduser -D lighttpd lighttpd
-RUN set -x && apk add --update --no-cache wget lighttpd php5-cgi php5-gd tar && \
+RUN set -x && apk add --update --no-cache wget lighttpd php5-cgi php5-gd php5-xml tar && \
     wget --no-check-certificate -q -O /dokuwiki.tgz "https://download.dokuwiki.org/src/dokuwiki/dokuwiki-$DOKUWIKI_VERSION.tgz" && \
     if [ "$DOKUWIKI_CSUM" != "$(md5sum /dokuwiki.tgz | awk '{print($1)}')" ];then echo "Wrong md5sum of downloaded file!"; exit 1; fi && \
     mkdir /dokuwiki && \
